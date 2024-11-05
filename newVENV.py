@@ -1,24 +1,32 @@
 from tkinter import *
 from tkinter import filedialog
 import os
- 
+
 root = Tk()
 root.geometry('500x500')
-root.title('New Hire Email Clock ID Query')
+root.title('New Virtual Environment')
 
-# Frames
+## Objects
 
-# Text Boxes
+## Frames
+
+## Text boxes
 
 venv_title = Text(root, height = 1, font = ('Helvetica', 16))
 
-# Labels
+##Labels
+
+# file_path_label = Label(root, text = file_path).grid(row=1, column=0,columnspan=3,sticky='NESW')
+    
 
 ## Functions
 
 def open_folder():
-    file_path = filedialog.askdirectory(initialdir = 'C:/Users/')
-    file_path_label = Label(root, text = file_path).grid(row = 1, column = 0, columnspan = 3, sticky = 'NESW')
+    global file_path
+    global file_path_Label
+    
+    file_path = filedialog.askdirectory(initialdir= 'C:/Users/p3271256/')
+
     os.chdir(file_path)
 
 def get_text():
@@ -28,15 +36,16 @@ def get_text():
 def create_venv():
     get_text()
     cmd_create_venv = f'cmd /c "python -m venv {venv_name}"'
+
     os.system(cmd_create_venv)
 
 def clear_venv_title():
-    venv_title.delete(1.0, END)
+    venv_title.delete(1.0,END)
 
-# Buttons
+## Buttons
 
-venv_open_folder = Button(root, text = 'Open Root Folder', command = open_folder)
-venv_create = Button(root, text = 'Create Virtual Environment', command = create_venv)
+venv_open_folder = Button(root, text = 'Open Root Folder', command=open_folder)
+venv_create = Button(root, text="Create Virtual Environment", command=create_venv)
 venv_title_clear = Button(root, text = 'Clear Text', command = clear_venv_title)
 
 ## List of Objects
@@ -54,6 +63,7 @@ column_number = 0
 for object in object_list:
     Grid.columnconfigure(root, column_number, weight = 1)
     column_number += 1
+
 
 ## Positions
 
